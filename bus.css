@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+header {
+  background-color:#0d6efd;
+  height: 70px;
+  margin: 0;
+  padding: 0;
+}
+h2 {
+  padding: 10px;
+  margin: 0;
+  font-size: 2em;
+}
+.logo{
+  color: whitesmoke;
+}
+nav {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+}
+ul {
+  list-style-type: none;
+}
+li {
+  display: inline;
+  padding: 10px;
+}
+.link-underline-dark{
+    text-decoration: none;
+}
+
+
+#top_container{
+    background-color: aqua;
+    background-image: url("https://gst-contracts.s3.ap-southeast-1.amazonaws.com/uploads/bcc/cms/asset/avatar/324800/banner6.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 70vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+#container{
+    display: flex;
+    gap: 2px; 
+    background-color: rgba(255, 255, 255, 0.179);
+    /* height: 70vh;
+    width: 100%; */
+    padding: 100px 150px;
+    border-radius: 25px;
+}
+select, option, input, button{
+  cursor: pointer;
+}
+.block{
+  align-items: center;
+  justify-content: center;
+  padding: 20px 50px;
+  background-color: rgba(128, 128, 128, 0.52);
+    border-radius: 25px;
+
+  
+}
+
+.table_result{
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+td, th{
+  padding: 2px;
+}
+
+#Bottom_container{
+    /* background-color: aquamarine; */
+    height: 100vh;
+    width: 100%;
+}
+h3{
+    margin: 0;
+    text-align: center;
+}
+
+footer {
+  background-color:#0d6efd;
+  color: white;
+  /* position: fixed; */
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  /* padding: 10px; */
+  font-size: 1.2em;
+}
+
+
+.bukBtn{
+  background-color: green;
+  color:white;
+  border-radius: 10px;
+  border: none;
+  
+}
+.bukBtn:hover {
+  background-color: greenyellow;
+  color:antiquewhite;
+box-shadow: -10px -10px 30px 4px rgba(0,0,0,0.1), 10px 10px 30px 4px rgba(45,78,255,0.15);
+}

@@ -1,0 +1,80 @@
+body {
+  margin: 0;
+  background-color: palegreen;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+.bukBlock {
+  background-color: rgb(137, 240, 137);
+  height: 80%;
+  width: 80%;
+  position: relative;
+}
+
+.seat{
+background-color: aliceblue;
+height:80%;
+width: 25%;
+position: absolute;
+top: 50px;
+left: 100px;
+border-radius: 10px;
+}
+.seat>div:nth-child(1){
+    height: 20%;
+    width: 100%;
+    position: relative;
+}
+.seat>div:nth-child(2){
+    background-color: aquamarine;
+    height: 70%;
+    width: 100%;
+    display: flex;
+}
+.seat>div:nth-child(2)>:nth-child(1){
+  background-color: red;
+  height: 100%;
+  width: 20%;
+}
+.seat>div:nth-child(2)>:nth-child(2){
+  background-color: green;
+  height: 100%;
+  width: 20%;
+}
+.seat>div:nth-child(2)>:nth-child(3){
+  background-color: red;
+  height: 100%;
+  width: 20%;
+}
+.seat>div:nth-child(2)>:nth-child(4){
+  background-color: green;
+  height: 100%;
+  width: 20%;
+}
+.seat>div:nth-child(2)>:nth-child(5){
+  background-color: red;
+  height: 100%;
+  width: 20%;
+}
+img{
+  cursor: pointer;
+}
+
+.seat>div:nth-child(3){
+    height: 10%;
+    width: 100%;
+}
+
+.seat>div:nth-child(1)>svg>{
+  height: 80px;
+    width: 40px;
+    position: absolute;
+    top: 20px;
+    right: 5px
+}

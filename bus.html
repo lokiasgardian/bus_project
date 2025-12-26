@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Application</title>
+    <link rel="stylesheet" href="bus.css">
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+
+<body>
+    <header class="$blue-500">
+        <h2 class="logo">Logo</h2>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#offers" class="btn btn-primary">Offers</a></li>
+            <li><a href="#track" class="btn btn-primary">Track</a></li>
+            <li><a href="#contact" class="btn btn-primary">Contact us</a></li>
+            <li><button id="loginBtn" onclick="login()" class="btn btn-primary">Login</button>
+                <span id="greet"></span>
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <div id="top_container">
+            <div id="container">
+                <div class="block">
+                    <label>From:</label><br>
+                    <select id="fromDes">
+                        <option>...Select...</option>
+                        <option>Hyderabad</option>
+                        <option>Vijayawada</option>
+                        <option>Vizag</option>
+                        <option>Bangalore</option>
+                    </select>
+                </div>
+                <div class="block">
+                    <label>To:</label><br>
+                    <select id="toDes">
+                        <option>...Select...</option>
+                        <option>Hyderabad</option>
+                        <option>Vijayawada</option>
+                        <option>Vizag</option>
+                        <option>Bangalore</option>
+                    </select>
+                </div>
+                <div class="block">
+                    <label>Date:</label><br>
+                    <input type="date" id="myDate">
+                </div>
+                <div class="block"><br>
+                    <button class="btn btn-primary" type="button" onclick="search()">Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="table_result">
+            <table id="result" class="table table-striped"></table>
+        </div>
+        <div id="Bottom_container">
+            <h3 id="offers">Offers</h3>
+            <p style="text-align: center;">No offers available yet</p>
+        </div>
+    </main>
+    <footer>
+        <h3 id="contact">Contact us</h3>
+        <i class="cil-contact-phone"></i>
+        &copy; Copyright
+    </footer>
+
+
+    <script>
+
+        const input = document.getElementById('myDate');
+
+        const today = new Date();
+        input.valueAsDate = today;                            // show today as selected
+
+        const todayStr = today.toISOString().split('T')[0];
+        input.min = todayStr;                                // disable past dates
+
+
+
+
+        // travel details
+        function search() {
+            let i = document.getElementById("fromDes").value;
+            let j = document.getElementById("toDes").value;
+            console.log(i, j);
+
+
+            var aa = [
+                { from: 'Hyderabad', to: 'Vijayawada', date: 'today', time: '10:00', price: '800' },
+                { from: 'Hyderabad', to: 'Vijayawada', date: 'today', time: '10:00', price: '800' },
+                { from: 'Hyderabad', to: 'Vijayawada', date: 'today', time: '14:00', price: '800' },
+                { from: 'Hyderabad', to: 'Vijayawada', date: 'today', time: '14:00', price: '800' },
+                { from: 'Hyderabad', to: 'Vijayawada', date: 'today', time: '18:00', price: '800' },
+                { from: 'Hyderabad', to: 'Vijayawada', date: 'today', time: '18:00', price: '800' },
+                { from: 'Hyderabad', to: 'Vijayawada', date: 'today', time: '22:00', price: '800' },
+                { from: 'Hyderabad', to: 'Vijayawada', date: 'today', time: '22:00', price: '800' },
+                { from: 'Hyderabad', to: 'Vijayawada', date: 'today', time: '00:01', price: '800' },
+                { from: 'Hyderabad', to: 'Vijayawada', date: 'today', time: '00:00', price: '800' },
+                { from: 'Hyderabad', to: 'Vijayawada', date: 'today', time: '04:00', price: '800' },
+                { from: 'Hyderabad', to: 'Vijayawada', date: 'today', time: '04:00', price: '800' },
+                { from: 'Hyderabad', to: 'Vijayawada', date: 'today', time: '08:00', price: '800' },
+            ]
+
+            var ab = [
+                { from: 'Vijayawada', to: 'Hyderabad', date: 'today', time: '12:00', price: '800' },
+                { from: 'Vijayawada', to: 'Hyderabad', date: 'today', time: '12:00', price: '800' },
+                { from: 'Vijayawada', to: 'Hyderabad', date: 'today', time: '16:00', price: '800' },
+                { from: 'Vijayawada', to: 'Hyderabad', date: 'today', time: '16:00', price: '800' },
+                { from: 'Vijayawada', to: 'Hyderabad', date: 'today', time: '20:00', price: '800' },
+                { from: 'Vijayawada', to: 'Hyderabad', date: 'today', time: '20:00', price: '800' },
+                { from: 'Vijayawada', to: 'Hyderabad', date: 'today', time: '24:00', price: '800' },
+                { from: 'Vijayawada', to: 'Hyderabad', date: 'today', time: '24:00', price: '800' },
+                { from: 'Vijayawada', to: 'Hyderabad', date: 'today', time: '02:02', price: '800' },
+                { from: 'Vijayawada', to: 'Hyderabad', date: 'today', time: '02:00', price: '800' },
+                { from: 'Vijayawada', to: 'Hyderabad', date: 'today', time: '06:00', price: '800' },
+                { from: 'Vijayawada', to: 'Hyderabad', date: 'today', time: '06:00', price: '800' },
+                { from: 'Vijayawada', to: 'Hyderabad', date: 'today', time: '08:00', price: '800' },
+
+            ]
+
+
+            var bb = [
+                { from: 'Hyderabad', to: 'Vizag', date: 'today', time: '08:00', price: '1200' },
+                { from: 'Hyderabad', to: 'Vizag', date: 'today', time: '12:00', price: '1200' },
+                { from: 'Hyderabad', to: 'Vizag', date: 'today', time: '14:00', price: '1200' },
+                { from: 'Hyderabad', to: 'Vizag', date: 'today', time: '18:00', price: '1200' },
+                { from: 'Hyderabad', to: 'Vizag', date: 'today', time: '22:00', price: '1200' },
+                { from: 'Hyderabad', to: 'Vizag', date: 'today', time: '02:00', price: '1200' },
+                { from: 'Hyderabad', to: 'Vizag', date: 'today', time: '06:00', price: '1200' },
+                { from: 'Hyderabad', to: 'Vizag', date: 'today', time: '08:00', price: '1200' },
+                { from: 'Hyderabad', to: 'Vizag', date: 'today', time: '12:00', price: '1200' },
+                { from: 'Hyderabad', to: 'Vizag', date: 'today', time: '14:00', price: '1200' },
+                { from: 'Hyderabad', to: 'Vizag', date: 'today', time: '22:00', price: '1200' },
+                { from: 'Hyderabad', to: 'Vizag', date: 'today', time: '02:00', price: '1200' },
+                { from: 'Hyderabad', to: 'Vizag', date: 'today', time: '06:00', price: '1200' },
+                { from: 'Hyderabad', to: 'Vizag', date: 'today', time: '08:00', price: '1200' },
+            ]
+
+            var bc = [
+                { from: 'Vizag', to: 'Hyderabad', date: 'today', time: '16:00', price: '1200' },
+                { from: 'Vizag', to: 'Hyderabad', date: 'today', time: '20:00', price: '1200' },
+                { from: 'Vizag', to: 'Hyderabad', date: 'today', time: '00:00', price: '1200' },
+                { from: 'Vizag', to: 'Hyderabad', date: 'today', time: '04:00', price: '1200' },
+                { from: 'Vizag', to: 'Hyderabad', date: 'today', time: '08:00', price: '1200' },
+                { from: 'Vizag', to: 'Hyderabad', date: 'today', time: '12:00', price: '1200' },
+                { from: 'Vizag', to: 'Hyderabad', date: 'today', time: '16:00', price: '1200' },
+                { from: 'Vizag', to: 'Hyderabad', date: 'today', time: '20:00', price: '1200' },
+                { from: 'Vizag', to: 'Hyderabad', date: 'today', time: '00:00', price: '1200' },
+                { from: 'Vizag', to: 'Hyderabad', date: 'today', time: '04:00', price: '1200' },
+                { from: 'Vizag', to: 'Hyderabad', date: 'today', time: '08:00', price: '1200' },
+                { from: 'Vizag', to: 'Hyderabad', date: 'today', time: '12:00', price: '1200' },
+            ]
+
+            var cc = [
+                { from: 'Hyderabad', to: 'Bangalore', date: 'today', time: '01:00', price: '1500' },
+                { from: 'Hyderabad', to: 'Bangalore', date: 'today', time: '01:00', price: '1500' },
+                { from: 'Hyderabad', to: 'Bangalore', date: 'today', time: '03:00', price: '1500' },
+                { from: 'Hyderabad', to: 'Bangalore', date: 'today', time: '03:00', price: '1500' },
+                { from: 'Hyderabad', to: 'Bangalore', date: 'today', time: '05:00', price: '1500' },
+                { from: 'Hyderabad', to: 'Bangalore', date: 'today', time: '05:00', price: '1500' },
+                { from: 'Hyderabad', to: 'Bangalore', date: 'today', time: '07:00', price: '1500' },
+                { from: 'Hyderabad', to: 'Bangalore', date: 'today', time: '07:00', price: '1500' },
+                { from: 'Hyderabad', to: 'Bangalore', date: 'today', time: '09:00', price: '1500' },
+                { from: 'Hyderabad', to: 'Bangalore', date: 'today', time: '09:00', price: '1500' },
+                { from: 'Hyderabad', to: 'Bangalore', date: 'today', time: '11:00', price: '1500' },
+                { from: 'Hyderabad', to: 'Bangalore', date: 'today', time: '11:00', price: '1500' },
+                { from: 'Hyderabad', to: 'Bangalore', date: 'today', time: '13:00', price: '1500' },
+                { from: 'Hyderabad', to: 'Bangalore', date: 'today', time: '13:00', price: '1500' },
+                { from: 'Hyderabad', to: 'Bangalore', date: 'today', time: '15:00', price: '1500' },
+                { from: 'Hyderabad', to: 'Bangalore', date: 'today', time: '15:00', price: '1500' },
+                { from: 'Hyderabad', to: 'Bangalore', date: 'today', time: '17:00', price: '1500' },
+                { from: 'Hyderabad', to: 'Bangalore', date: 'today', time: '17:00', price: '1500' },
+                { from: 'Hyderabad', to: 'Bangalore', date: 'today', time: '21:00', price: '1500' },
+                { from: 'Hyderabad', to: 'Bangalore', date: 'today', time: '21:00', price: '1500' },
+            ]
+            var dd = [
+                { from: 'Vijayawada', to: 'Vizag', date: 'today', time: '06:00', price: '700' },
+                { from: 'Vijayawada', to: 'Vizag', date: 'today', time: '10:00', price: '700' },
+                { from: 'Vijayawada', to: 'Vizag', date: 'today', time: '14:00', price: '700' },
+                { from: 'Vijayawada', to: 'Vizag', date: 'today', time: '18:00', price: '700' },
+                { from: 'Vijayawada', to: 'Vizag', date: 'today', time: '20:00', price: '700' },
+                { from: 'Vijayawada', to: 'Vizag', date: 'today', time: '04:00', price: '700' },
+            ]
+            var de = [
+                { from: 'Vizag', to: 'Vijayawada', date: 'today', time: '03:00', price: '700' },
+                { from: 'Vizag', to: 'Vijayawada', date: 'today', time: '05:00', price: '700' },
+                { from: 'Vizag', to: 'Vijayawada', date: 'today', time: '11:00', price: '700' },
+                { from: 'Vizag', to: 'Vijayawada', date: 'today', time: '13:00', price: '700' },
+                { from: 'Vizag', to: 'Vijayawada', date: 'today', time: '17:00', price: '700' },
+                { from: 'Vizag', to: 'Vijayawada', date: 'today', time: '19:00', price: '700' },
+            ]
+            var ee = [
+                { from: 'Vijayawada', to: 'Bangalore', date: 'today', time: '01:30', price: '1300' },
+                { from: 'Vijayawada', to: 'Bangalore', date: 'today', time: '05:30', price: '1300' },
+                { from: 'Vijayawada', to: 'Bangalore', date: 'today', time: '09:30', price: '1300' },
+                { from: 'Vijayawada', to: 'Bangalore', date: 'today', time: '13:30', price: '1300' },
+                { from: 'Vijayawada', to: 'Bangalore', date: 'today', time: '17:30', price: '1300' },
+                { from: 'Vijayawada', to: 'Bangalore', date: 'today', time: '21:30', price: '1300' },
+            ]
+            var ef = [
+                { from: 'Bangalore', to: 'Vijayawada', date: 'today', time: '22:30', price: '1300' },
+                { from: 'Bangalore', to: 'Vijayawada', date: 'today', time: '02:30', price: '1300' },
+                { from: 'Bangalore', to: 'Vijayawada', date: 'today', time: '06:30', price: '1300' },
+                { from: 'Bangalore', to: 'Vijayawada', date: 'today', time: '10:30', price: '1300' },
+                { from: 'Bangalore', to: 'Vijayawada', date: 'today', time: '14:30', price: '1300' },
+            ]
+            var ff = [
+                { from: 'Vizag', to: 'Bangalore', date: 'today', time: '01:00', price: '2000' },
+                { from: 'Vizag', to: 'Bangalore', date: 'today', time: '07:00', price: '2000' },
+                { from: 'Vizag', to: 'Bangalore', date: 'today', time: '13:00', price: '2000' },
+                { from: 'Vizag', to: 'Bangalore', date: 'today', time: '19:00', price: '2000' },
+            ]
+            var fg = [
+                { from: 'Bangalore', to: 'Vizag', date: 'today', time: '03:00', price: '2000' },
+                { from: 'Bangalore', to: 'Vizag', date: 'today', time: '09:00', price: '2000' },
+                { from: 'Bangalore', to: 'Vizag', date: 'today', time: '15:00', price: '2000' },
+                { from: 'Bangalore', to: 'Vizag', date: 'today', time: '21:00', price: '2000' },
+            ]
+
+
+            if (i == "Hyderabad" && j == "Vijayawada") {
+                document.getElementById("result").innerHTML = `<tr><th>From</th><th>To</th><th>Date</th><th>Time</th><th>Price</th><th>Book Your Seat</th><tr>`;
+                for (a = 0; a <= aa.length; a++) {
+                    document.getElementById("result").innerHTML += `<tr><td>${aa[a].from}</td><td>${aa[a].to}</td><td>${aa[a].date}</td><td>${aa[a].time}</td><td>${aa[a].price}</td><td><a href="Btn.html"><button class="bukBtn">Book Now</button></a></td></tr>`;
+                    console.log(aa)
+                }
+            }
+            else if (i == "Vijayawada" && j == "Hyderabad") {
+                document.getElementById("result").innerHTML = `<tr><th>From</th><th>To</th><th>Date</th><th>Time</th><th>Price</th><th>Book Your Seat</th><tr>`;
+                for (a = 0; a <= ab.length; a++) {
+                    document.getElementById("result").innerHTML += `<tr><td>${ab[a].from}</td><td>${ab[a].to}</td><td>${ab[a].date}</td><td>${ab[a].time}</td><td>${ab[a].price}</td><td><a href="Btn.html"><button class="bukBtn">Book Now</button></a></td></tr>`;
+                    console.log(aa)
+                }
+            }
+            else if (i == "Hyderabad" && j == "Vizag") {
+                document.getElementById("result").innerHTML = `<tr><th>From</th><th>To</th><th>Date</th><th>Time</th><th>Price</th><th>Book Your Seat</th><tr>`;
+                for (a = 0; a <= bb.length; a++) {
+                    document.getElementById("result").innerHTML += `<tr><td>${bb[a].from}</td><td>${bb[a].to}</td><td>${bb[a].date}</td><td>${bb[a].time}</td><td>${bb[a].price}</td><td><a href="Btn.html"><button class="bukBtn">Book Now</button></a></td></tr>`;
+                    console.log(aa)
+                }
+            }
+            else if (i == "Vizag" && j == "Hyderabad") {
+                document.getElementById("result").innerHTML = `<tr><th>From</th><th>To</th><th>Date</th><th>Time</th><th>Price</th><th>Book Your Seat</th><tr>`;
+                for (a = 0; a <= aa.length; a++) {
+                    document.getElementById("result").innerHTML += `<tr><td>${bc[a].from}</td><td>${bc[a].to}</td><td>${bc[a].date}</td><td>${bc[a].time}</td><td>${bc[a].price}</td><td><a href="Btn.html"><button class="bukBtn">Book Now</button></a></td></tr>`;
+                    console.log(aa)
+                }
+            }
+            else if (i == "Hyderabad" && j == "Bangalore") {
+                document.getElementById("result").innerHTML = `<tr><th>From</th><th>To</th><th>Date</th><th>Time</th><th>Price</th><th>Book Your Seat</th><tr>`;
+                for (a = 0; a <= aa.length; a++) {
+                    document.getElementById("result").innerHTML += `<tr><td>${cc[a].from}</td><td>${cc[a].to}</td><td>${cc[a].date}</td><td>${cc[a].time}</td><td>${cc[a].price}</td><td><a href="Btn.html"><button class="bukBtn">Book Now</button></a></td></tr>`;
+                    console.log(aa)
+                }
+            }
+            else if (i == "Vijayawada" && j == "Vizag") {
+                document.getElementById("result").innerHTML = `<tr><th>From</th><th>To</th><th>Date</th><th>Time</th><th>Price</th><th>Book Your Seat</th><tr>`;
+                for (a = 0; a <= aa.length; a++) {
+                    document.getElementById("result").innerHTML += `<tr><td>${dd[a].from}</td><td>${dd[a].to}</td><td>${dd[a].date}</td><td>${dd[a].time}</td><td>${dd[a].price}</td><td><a href="Btn.html"><button class="bukBtn">Book Now</button></a></td></tr>`;
+                    console.log(aa)
+                }
+            }
+            else if (i == "Vizag" && j == "Vijayawada") {
+                document.getElementById("result").innerHTML = `<tr><th>From</th><th>To</th><th>Date</th><th>Time</th><th>Price</th><th>Book Your Seat</th><tr>`;
+                for (a = 0; a <= aa.length; a++) {
+                    document.getElementById("result").innerHTML += `<tr><td>${de[a].from}</td><td>${de[a].to}</td><td>${de[a].date}</td><td>${de[a].time}</td><td>${de[a].price}</td><td><a href="Btn.html"><button class="bukBtn">Book Now</button></a></td></tr>`;
+                    console.log(aa)
+                }
+            }
+            else if (i == "Vijayawada" && j == "Bangalore") {
+                document.getElementById("result").innerHTML = `<tr><th>From</th><th>To</th><th>Date</th><th>Time</th><th>Price</th><th>Book Your Seat</th><tr>`;
+                for (a = 0; a <= aa.length; a++) {
+                    document.getElementById("result").innerHTML += `<tr><td>${ee[a].from}</td><td>${ee[a].to}</td><td>${ee[a].date}</td><td>${ee[a].time}</td><td>${ee[a].price}</td><td><a href="Btn.html"><button class="bukBtn">Book Now</button></a></td></tr>`;
+                    console.log(aa)
+                }
+            }
+            else if (i == "Bangalore" && j == "Vijayawada") {
+                document.getElementById("result").innerHTML = `<tr><th>From</th><th>To</th><th>Date</th><th>Time</th><th>Price</th><th>Book Your Seat</th><tr>`;
+                for (a = 0; a <= aa.length; a++) {
+                    document.getElementById("result").innerHTML += `<tr><td>${ef[a].from}</td><td>${ef[a].to}</td><td>${ef[a].date}</td><td>${ef[a].time}</td><td>${ef[a].price}</td><td><a href="Btn.html"><button class="bukBtn">Book Now</button></a></td></tr>`;
+                    console.log(aa)
+                }
+            }
+            else if (i == "Vizag" && j == "Bangalore") {
+                document.getElementById("result").innerHTML = `<tr><th>From</th><th>To</th><th>Date</th><th>Time</th><th>Price</th><th>Book Your Seat</th><tr>`;
+                for (a = 0; a <= aa.length; a++) {
+                    document.getElementById("result").innerHTML += `<tr><td>${ff[a].from}</td><td>${ff[a].to}</td><td>${ff[a].date}</td><td>${ff[a].time}</td><td>${ff[a].price}</td><td><a href="Btn.html"><button class="bukBtn">Book Now</button></a></td></tr>`;
+                    console.log(aa)
+                }
+            }
+            else if (i == "Bangalore" && j == "Vizag") {
+                document.getElementById("result").innerHTML = `<tr><th>From</th><th>To</th><th>Date</th><th>Time</th><th>Price</th><th>Book Your Seat</th><tr>`;
+                for (a = 0; a <= aa.length; a++) {
+                    document.getElementById("result").innerHTML += `<tr><td>${ef[a].from}</td><td>${ef[a].to}</td><td>${ef[a].date}</td><td>${ef[a].time}</td><td>${ef[a].price}</td><td><a href="Btn.html"><button class="bukBtn">Book Now</button></a></td></tr>`;
+                    console.log(aa)
+                }
+            }
+            else if (i == "Hyderabad" && j == "Hyderabad") {
+                document.getElementById("result").innerHTML = `Invalid selection`;
+            }
+            else if (i == "Bangalore" && j == "Bangalore") {
+                document.getElementById("result").innerHTML = `Invalid selection`;
+            }
+            else if (i == "Vijayawada" && j == "Vijayawada") {
+                document.getElementById("result").innerHTML = `Invalid selection`;
+            }
+            else if (i == "Vizag" && j == "Vizag") {
+                document.getElementById("result").innerHTML = `Invalid selection`;
+            }
+            else {
+                document.getElementById("result").innerHTML = `Invalid selection`;
+            }
+        }
+
+        // login btn part
+        function login() {
+            // hard-coded correct credentials (for practice only)
+            const correctUsername = "";
+            const correctPassword = "pass123";
+
+            const username = window.prompt("Enter your username:");
+            const password = window.prompt("Enter your password:");
+
+            if (password === correctPassword) {
+                // show "hello username" instead of the button
+                const btn = document.getElementById("loginBtn");
+                const greet = document.getElementById("greet");
+
+                btn.style.display = "none";                // hide button
+                greet.innerHTML = "welcome " + username;     // show greeting
+            } else {
+                alert("Invalid username or password");
+            }
+        }
+
+
+    </script>
+    <script src="bootstrap.js"></script>
+
+
+</body>
+
+</html>
