@@ -95,6 +95,10 @@ img {
   right: 5px;
 }
 
+.confo{
+  font-size: 1.em;
+}
+
 /* --- Make whole page responsive --- */
 
 /* Ensure everything scales from the viewport */

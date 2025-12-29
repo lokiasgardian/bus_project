@@ -1,112 +1,191 @@
+/* -------------------- GLOBAL RESET -------------------- */
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+
 body {
   margin: 0;
   padding: 0;
+  background-color: #f4f6f9;
+  color: #333;
 }
+
+/* -------------------- HEADER -------------------- */
 header {
-  background-color:#0d6efd;
+  background: linear-gradient(90deg, #0d6efd, #084298);
   height: 70px;
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.logo {
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+/* -------------------- NAV -------------------- */
+nav {
+  position: absolute;
+  top: 15px;
+  right: 30px;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  gap: 12px;
   margin: 0;
   padding: 0;
 }
-h2 {
-  padding: 10px;
-  margin: 0;
-  font-size: 2em;
-}
-.logo{
-  color: whitesmoke;
-}
-nav {
-  position: absolute;
-  top: 20px;
-  right: 10px;
-}
-ul {
-  list-style-type: none;
-}
+
 li {
-  display: inline;
-  padding: 10px;
-}
-.link-underline-dark{
-    text-decoration: none;
+  display: inline-block;
 }
 
-
-#top_container{
-    background-color: aqua;
-    background-image: url("https://gst-contracts.s3.ap-southeast-1.amazonaws.com/uploads/bcc/cms/asset/avatar/324800/banner6.jpg");
-    background-position: center;
-    background-size: cover;
-    height: 70vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-#container{
-    display: flex;
-    gap: 2px; 
-    background-color: rgba(255, 255, 255, 0.179);
-    /* height: 70vh;
-    width: 100%; */
-    padding: 100px 150px;
-    border-radius: 25px;
-}
-select, option, input, button{
-  cursor: pointer;
-}
-.block{
+/* -------------------- HERO / TOP CONTAINER -------------------- */
+#top_container {
+  height: 70vh;
+  width: 100%;
+  background-image: url("https://gst-contracts.s3.ap-southeast-1.amazonaws.com/uploads/bcc/cms/asset/avatar/324800/banner6.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px 50px;
-  background-color: rgba(128, 128, 128, 0.52);
-    border-radius: 25px;
-
-  
+  position: relative;
 }
 
-.table_result{
+#top_container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+/* -------------------- SEARCH CARD -------------------- */
+#container {
+  position: relative;
   display: flex;
-  justify-content: center;
-  padding: 20px;
-}
-td, th{
-  padding: 2px;
-}
-
-#Bottom_container{
-    /* background-color: aquamarine; */
-    height: 100vh;
-    width: 100%;
-}
-h3{
-    margin: 0;
-    text-align: center;
+  gap: 20px;
+  padding: 35px 40px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
 }
 
-footer {
-  background-color:#0d6efd;
-  color: white;
-  /* position: fixed; */
-  bottom: 0;
-  width: 100%;
+/* -------------------- INPUT BLOCKS -------------------- */
+.block {
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+}
+
+.block label {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+select,
+input[type="date"] {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  outline: none;
+  transition: 0.3s;
+}
+
+select:focus,
+input[type="date"]:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.2);
+}
+
+/* -------------------- SEARCH BUTTON -------------------- */
+.block button {
+  margin-top: 18px;
+  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.block button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(13, 110, 253, 0.35);
+}
+
+/* -------------------- RESULT TABLE -------------------- */
+.table_result {
+  padding: 40px 20px;
+}
+
+table {
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+th {
+  background-color: #0d6efd;
+  color: #fff;
+  padding: 12px;
   text-align: center;
-  /* padding: 10px; */
-  font-size: 1.2em;
+  font-size: 0.95rem;
 }
 
+td {
+  padding: 10px;
+  text-align: center;
+  font-size: 0.9rem;
+}
 
-.bukBtn{
-  background-color: green;
-  color:white;
-  border-radius: 10px;
+tr:hover td {
+  background-color: #f1f5ff;
+}
+
+/* -------------------- BOOK BUTTON -------------------- */
+.bukBtn {
+  background: linear-gradient(135deg, #198754, #157347);
+  color: #fff;
   border: none;
-  
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
+
 .bukBtn:hover {
-  background-color: greenyellow;
-  color:antiquewhite;
-box-shadow: -10px -10px 30px 4px rgba(0,0,0,0.1), 10px 10px 30px 4px rgba(45,78,255,0.15);
+  background: linear-gradient(135deg, #20c997, #198754);
+  box-shadow: 0 6px 18px rgba(25, 135, 84, 0.4);
+  transform: scale(1.05);
+}
+
+/* -------------------- BOTTOM SECTION -------------------- */
+#Bottom_container {
+  padding: 50px 20px;
+  background-color: #ffffff;
+}
+
+#Bottom_container h3 {
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+/* -------------------- FOOTER -------------------- */
+footer {
+  background: linear-gradient(90deg, #084298, #0d6efd);
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  font-size: 1rem;
 }
