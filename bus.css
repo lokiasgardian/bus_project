@@ -189,3 +189,60 @@ footer {
   padding: 20px;
   font-size: 1rem;
 }
+
+/* ---------------- AUTH MODAL ---------------- */
+.auth-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.auth-box {
+  background: white;
+  padding: 30px;
+  width: 320px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.auth-box h3 {
+  margin-bottom: 20px;
+}
+
+.auth-box input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.toggle-text {
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+.toggle-text span {
+  color: #0d6efd;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.close-btn {
+  position: absolute;
+  right: 18px;
+  top: 12px;
+  font-size: 24px;
+  cursor: pointer;
+}
