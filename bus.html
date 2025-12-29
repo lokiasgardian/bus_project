@@ -19,9 +19,9 @@
             <li><a href="#track" class="btn btn-primary">Track</a></li>
             <li><a href="#contact" class="btn btn-primary">Contact us</a></li>
             <li>
-  <button id="authBtn" class="btn btn-primary" onclick="openAuth()">Login / Sign Up</button>
-  <span id="greet" style="color:white; font-weight:600;"></span>
-</li>
+                <button id="authBtn" class="btn btn-primary" onclick="openAuth()">Login / Sign Up</button>
+                <span id="greet" style="color:white; font-weight:600;"></span>
+            </li>
 
         </ul>
     </nav>
@@ -340,85 +340,85 @@
             }
         }
 
-let isLogin = true;
+        let isLogin = true;
 
-// open modal
-function openAuth() {
-  document.getElementById("authModal").style.display = "flex";
-}
+        // open modal
+        function openAuth() {
+            document.getElementById("authModal").style.display = "flex";
+        }
 
-// close modal
-function closeAuth() {
-  document.getElementById("authModal").style.display = "none";
-}
+        // close modal
+        function closeAuth() {
+            document.getElementById("authModal").style.display = "none";
+        }
 
-// toggle login/signup
-function toggleAuth() {
-  isLogin = !isLogin;
-  document.getElementById("authTitle").innerText = isLogin ? "Login" : "Sign Up";
-  document.querySelector(".auth-box button").innerText = isLogin ? "Login" : "Sign Up";
-  document.querySelector(".toggle-text").innerHTML =
-    isLogin
-      ? `Don’t have an account? <span onclick="toggleAuth()">Sign Up</span>`
-      : `Already have an account? <span onclick="toggleAuth()">Login</span>`;
-}
+        // toggle login/signup
+        function toggleAuth() {
+            isLogin = !isLogin;
+            document.getElementById("authTitle").innerText = isLogin ? "Login" : "Sign Up";
+            document.querySelector(".auth-box button").innerText = isLogin ? "Login" : "Sign Up";
+            document.querySelector(".toggle-text").innerHTML =
+                isLogin
+                    ? `Don’t have an account? <span onclick="toggleAuth()">Sign Up</span>`
+                    : `Already have an account? <span onclick="toggleAuth()">Login</span>`;
+        }
 
-// login/signup handler
-function handleAuth() {
-  const username = document.getElementById("authUsername").value.trim();
-  const password = document.getElementById("authPassword").value.trim();
+        // login/signup handler
+        function handleAuth() {
+            const username = document.getElementById("authUsername").value.trim();
+            const password = document.getElementById("authPassword").value.trim();
 
-  if (!username || !password) {
-    alert("Please fill all fields");
-    return;
-  }
+            if (!username || !password) {
+                alert("Please fill all fields");
+                return;
+            }
 
-  if (isLogin) {
-    const savedUser = JSON.parse(localStorage.getItem("busUser"));
+            if (isLogin) {
+                const savedUser = JSON.parse(localStorage.getItem("busUser"));
 
-    if (!savedUser || savedUser.username !== username || savedUser.password !== password) {
-      alert("Invalid credentials");
-      return;
-    }
-  } else {
-    localStorage.setItem("busUser", JSON.stringify({ username, password }));
-  }
+                if (!savedUser || savedUser.username !== username || savedUser.password !== password) {
+                    alert("Invalid credentials");
+                    return;
+                }
+            } else {
+                localStorage.setItem("busUser", JSON.stringify({ username, password }));
+            }
 
-  // success
-  document.getElementById("authBtn").style.display = "none";
-  document.getElementById("greet").innerText = `Welcome ${username}`;
-  closeAuth();
-}
+            // success
+            document.getElementById("authBtn").style.display = "none";
+            document.getElementById("greet").innerText = `Welcome ${username}`;
+            closeAuth();
+        }
 
-// auto login if already logged in
-window.onload = () => {
-  const user = JSON.parse(localStorage.getItem("busUser"));
-  if (user) {
-    document.getElementById("authBtn").style.display = "none";
-    document.getElementById("greet").innerText = `Welcome ${user.username}`;
-  }
-};
+        // auto login if already logged in
+        window.onload = () => {
+            const user = JSON.parse(localStorage.getItem("busUser"));
+            if (user) {
+                document.getElementById("authBtn").style.display = "none";
+                document.getElementById("greet").innerText = `Welcome ${user.username}`;
+            }
+        };
 
     </script>
     <script src="bootstrap.js"></script>
-<!-- AUTH MODAL -->
-<div id="authModal" class="auth-modal">
-  <div class="auth-box">
-    <span class="close-btn" onclick="closeAuth()">&times;</span>
+    <!-- AUTH MODAL -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-box">
+            <span class="close-btn" onclick="closeAuth()">&times;</span>
 
-    <h3 id="authTitle">Login</h3>
+            <h3 id="authTitle">Login</h3>
 
-    <input type="text" id="authUsername" placeholder="Username">
-    <input type="password" id="authPassword" placeholder="Password">
+            <input type="text" id="authUsername" placeholder="Username">
+            <input type="password" id="authPassword" placeholder="Password">
 
-    <button class="btn btn-primary w-100" onclick="handleAuth()">Login</button>
+            <button class="btn btn-primary w-100" onclick="handleAuth()">Login</button>
 
-    <p class="toggle-text">
-      Don’t have an account?
-      <span onclick="toggleAuth()">Sign Up</span>
-    </p>
-  </div>
-</div>
+            <p class="toggle-text">
+                Don’t have an account?
+                <span onclick="toggleAuth()">Sign Up</span>
+            </p>
+        </div>
+    </div>
 
 
 </body>

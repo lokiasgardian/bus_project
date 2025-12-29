@@ -1,194 +1,141 @@
-body {
-  margin: 0;
-  background-color: palegreen;
+* {
   box-sizing: border-box;
+  font-family: system-ui, sans-serif;
 }
 
-.container {
+body {
+  margin: 0;
+  height: 100vh;
+  background: #eaffea;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  width: 100vw;
 }
-.bukBlock {
-  background-color: rgb(137, 240, 137);
-  height: 80%;
-  width: 80%;
-  position: relative;
+
+.app {
+  display: flex;
+  gap: 24px;
+}
+
+.bus-container {
+  width: 260px;
+  padding: 16px;
+  background: #f3fbff;
+  border: 3px solid #7be37b;
+  border-radius: 14px;
+}
+
+.driver {
+  font-size: 24px;
+  color: #aaa;
+  margin-bottom: 12px;
+}
+
+.seats {
+  display: flex;
+  justify-content: space-between;
+}
+
+.column {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px 12px;
+}
+
+.aisle {
+  width: 24px;
 }
 
 .seat {
-  background-color: aliceblue;
-  height: 80%;
-  width: 25%;
-  position: absolute;
-  top: 50px;
-  left: 100px;
-  border-radius: 10px;
-}
-.seat > div:nth-child(1) {
-  height: 20%;
-  width: 100%;
+  width: 34px;
+  height: 34px;
+  border: 2px solid #0f9d58;
+  border-radius: 8px 8px 12px 12px;
+  cursor: pointer;
   position: relative;
+  transition: 0.2s;
 }
-.seat > div:nth-child(2) {
-  height: 70%;
+
+.seat::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  right: 4px;
+  height: 8px;
+  border: 2px solid #0f9d58;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+}
+
+.seat.selected {
+  background: #0f9d58;
+}
+
+.seat.selected::after {
+  border-color: #fff;
+}
+
+.summary {
+  background: #fff;
+  padding: 20px;
+  border-radius: 14px;
+  width: 220px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+button {
   width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: #9db7f5;
+  cursor: not-allowed;
+}
+
+.popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup.active {
   display: flex;
 }
-.seat > div:nth-child(2) > :nth-child(1) {
-  height: 100%;
-  width: 20%;
-}
-.seat > div:nth-child(2) > :nth-child(2) {
-  height: 100%;
-  width: 20%;
-}
-.seat > div:nth-child(2) > :nth-child(3) {
-  height: 100%;
-  width: 20%;
-}
-.seat > div:nth-child(2) > :nth-child(4) {
-  height: 100%;
-  width: 20%;
-}
-.seat > div:nth-child(2) > :nth-child(5) {
-  height: 100%;
-  width: 20%;
-}
-#result {
-  position: absolute;
-  top: 250px;
-  left: 400px;
-}
-svg {
-  cursor: pointer;
-  padding: 10px;
-}
-svg.active {
-  fill: red;
-  stroke: red;
-}
-button {
-  cursor: pointer;
-}
-img {
-  cursor: pointer;
-  height: 40px;
-  margin: 1.5px;
-}
-.lastseat > svg {
-  padding: 15px;
+
+.popup-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  text-align: center;
+  animation: pop 0.4s ease;
 }
 
-.seat > div:nth-child(3) {
-  height: 10%;
-  width: 100%;
+@keyframes pop {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
-.seat > div:nth-child(1) > svg > {
-  height: 80px;
-  width: 40px;
-  position: absolute;
-  top: 20px;
-  right: 5px;
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  animation: fall 3s linear forwards;
 }
 
-.confo{
-  font-size: 1.em;
-}
-
-/* --- Make whole page responsive --- */
-
-/* Ensure everything scales from the viewport */
-html,
-body {
-  height: 100%;
-  width: 100%;
-}
-
-/* Container always fills the screen and centers the bus block */
-.container {
-  max-width: 100vw;
-  max-height: 100vh;
-  padding: 1rem;
-  box-sizing: border-box;
-}
-
-/* Bus block scales with screen, keeps aspect ratio */
-.bukBlock {
-  max-width: 900px; /* optional upper limit */
-  max-height: 550px;
-  width: 100%;
-  aspect-ratio: 16 / 10; /* keeps shape on any screen */
-}
-
-/* Scale the main seat block inside bus block */
-.seat {
-  /* change fixed px to percentage so position is relative */
-  top: 8%;
-  left: 8%;
-  width: 27%;
-  height: 80%;
-}
-
-/* Scale steering icon inside header */
-.seat > div:nth-child(1) > svg {
-  height: 39px;
-  width: auto;
-  top: 12%;
-  right: 3%;
-}
-
-/* Make seat icons scale with parent */
-svg {
-  width: 70%;
-  height: auto;
-}
-
-/* Bottom-row seats: keep inside and flexible */
-.lastseat > svg {
-  padding: 0.6vw;
-}
-
-/* --- Small screens: improve usability --- */
-@media (max-width: 768px) {
-  .container {
-    padding: 0.5rem;
-  }
-
-  .bukBlock {
-    max-width: 100%;
-    max-height: 100%;
-  }
-
-  .seat {
-    top: 6%;
-    left: 6%;
-    width: 40%; /* slightly wider on small screens */
-    height: 85%;
-  }
-
-  svg {
-    width: 80%;
-    padding: 0.25rem;
-  }
-
-  img {
-    height: 28px;
-    margin: 1px;
-  }
-}
-
-/* Very small phones */
-@media (max-width: 480px) {
-  .seat {
-    width: 55%;
-    left: 5%;
-  }
-
-  svg {
-    width: 90%;
+@keyframes fall {
+  to {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
   }
 }
