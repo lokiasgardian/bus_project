@@ -107,7 +107,7 @@ input[type="date"]:focus {
 
 /* -------------------- SEARCH BUTTON -------------------- */
 .block button {
-  margin-top: 18px;
+  margin-top: 30px;
   padding: 10px 20px;
   font-weight: 600;
   border-radius: 8px;
@@ -119,6 +119,9 @@ input[type="date"]:focus {
   box-shadow: 0 8px 20px rgba(13, 110, 253, 0.35);
 }
 
+.block button:active{
+  background-color:  #0368ff ;
+}
 /* -------------------- RESULT TABLE -------------------- */
 .table_result {
   padding: 40px 20px;
